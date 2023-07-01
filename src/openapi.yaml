@@ -1,0 +1,426 @@
+openapi: 3.0.0
+info:
+  title: PPDB API
+  description: |-
+    This is a first revision of the PPDB API based on the OpenAPI 3.0 specification.  You can find out more about
+    PPDB at [https://github.com/Robin-Collins/ppdb](https://github.com/Robin-Collins/ppdb). 
+
+    Some useful links:
+    - [The PPDB repository](https://github.com/Robin-Collins/ppdb)
+    - [The source API definition for the PPDB](https://github.com/Robin-Collins/ppdb/blob/main/src/openapi.yaml)
+
+  contact:
+    email: apiteam@thepamperedpooch.com.au
+  license:
+    name: GPL 3.0
+    url: https://raw.githubusercontent.com/Robin-Collins/ppdb/main/LICENSE
+  version: 1.0.0
+externalDocs:
+  description: Find out more about ppdb
+  url: https://github.com/Robin-Collins/ppdb
+servers:
+  - url: https://localhost:3000/api/
+tags:
+  - name: ppdb
+    description: Store and Retrieve Customer and Animal Details
+    externalDocs:
+	  description: Find out more about ppdb
+	  url: https://github.com/Robin-Collins/ppdb
+paths:
+  /api/customer/{customerID}:
+    get:
+      summary: Get a customer by ID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A customer object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    put:
+      summary: Update a customer by ID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: An updated customer object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    delete:
+      summary: Delete a customer by ID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/customer/create:
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+      responses:
+        '201':
+          description: A created customer object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+  /api/animal/{animalID}:
+    get:
+      summary: Get an animal by ID
+      parameters:
+        - name: animalID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: An animal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+    put:
+      summary: Update an animal by ID
+      parameters:
+        - name: animalID
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+      responses:
+        '200':
+          description: An updated animal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+    delete:
+      summary: Delete an animal by ID
+      parameters:
+        - name: animalID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/animal/create:
+    post:
+      summary: Create a new animal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Animal'
+      responses:
+        '201':
+          description: A created animal object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Animal'
+  /api/breed/{breedID}:
+    get:
+      summary: Get a breed by ID
+      parameters:
+        - name: breedID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A breed object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+    put:
+      summary: Update a breed by ID
+      parameters:
+        - name: breedID
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Breed'
+      responses:
+        '200':
+          description: An updated breed object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+    delete:
+      summary: Delete a breed by ID
+      parameters:
+        - name: breedID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/breed/create:
+    post:
+      summary: Create a new breed
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Breed'
+      responses:
+        '201':
+          description: A created breed object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Breed'
+  /api/notes/{noteID}:
+    get:
+      summary: Get a note by ID
+      parameters:
+        - name: noteID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A note object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    put:
+      summary: Update a note by ID
+      parameters:
+        - name: noteID
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '200':
+          description: An updated note object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+    delete:
+      summary: Delete a note by ID
+      parameters:
+        - name: noteID
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A confirmation message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /api/notes/create:
+    post:
+      summary: Create a new note
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+      responses:
+        '201':
+          description: A created note object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+  /api/search:
+    get:
+      summary: Search customers and animals
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+            minLength: 3
+      responses:
+        '200':
+          description: A list of search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        customerID:
+          type: integer
+        surname:
+          type: string
+        firstname:
+          type: string
+        address:
+          type: string
+        suburb:
+          type: string
+        postcode:
+          type: string
+        phone1:
+          type: string
+        phone2:
+          type: string
+        phone3:
+          type: string
+        email:
+          type: string
+    Animal:
+      type: object
+      properties:
+        animalID:
+          type: integer
+        animalname:
+          type: string
+        breedID:
+          type: integer
+        customerID:
+          type: integer
+        SEX:
+          type: string
+          enum: ['Male', 'Female']
+        colour:
+          type: string
+        cost:
+          type: integer
+        lastvisit:
+          type: string
+          format: date
+        thisvisit:
+          type: string
+          format: date
+        comments:
+          type: string
+    Breed:
+      type: object
+      properties:
+        breedID:
+          type: integer
+        breedname:
+          type: string
+        avgtime:
+          type: string
+          format: time
+        avgcost:
+          type: integer
+    Note:
+      type: object
+      properties:
+        noteID:
+          type: integer
+        animalID:
+          type: integer
+        notes:
+          type: string
+        date:
+          type: string
+          format: date
+    SearchResult:
+      type: object
+      properties:
+        customerID:
+          type: integer
+        firstname:
+          type: string
+        surname:
+          type: string
+        phone1:
+          type: string
+        phone2:
+          type: string
+        phone3:
+          type: string
+        animalid:
+          type: integer
+        animalname:
+          type: string
