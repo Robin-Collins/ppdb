@@ -24,8 +24,8 @@ tags:
   - name: ppdb
     description: Store and Retrieve Customer and Animal Details
     externalDocs:
-	  description: Find out more about ppdb
-	  url: https://github.com/Robin-Collins/ppdb
+      description: Find out more about ppdb
+      url: https://github.com/Robin-Collins/ppdb
 paths:
   /api/customer/{customerID}:
     get:
