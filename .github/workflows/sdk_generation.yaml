@@ -11,6 +11,10 @@ permissions:
         description: Force generation of SDKs
         type: boolean
         default: false
+      working_directory:
+        description: The working directory to run the generation in
+        type: string
+        default: "ppdb-typescript"
   schedule:
     - cron: 0 0 * * *
 jobs:
@@ -20,6 +24,7 @@ jobs:
       force: ${{ github.event.inputs.force }}
       mode: pr
       speakeasy_version: latest
+      working_directory: ${{ github.event.inputs.working_directory }}
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
